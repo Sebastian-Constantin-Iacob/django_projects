@@ -25,7 +25,7 @@ class Profile(models.Model):
         return str(self.user.username)
 
 
-class Skills(models.Model):
+class Skill(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, null=True, blank=True)
