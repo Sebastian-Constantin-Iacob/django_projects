@@ -49,3 +49,8 @@ def logoutUser(request):
     logout(request)
     messages.error(request, "User was successfully logged out!")
     return redirect('login')
+
+
+def registerUser(request):
+    context={}
+    return render(request, 'users/login_register.html', context)
