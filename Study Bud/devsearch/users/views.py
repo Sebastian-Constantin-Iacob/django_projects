@@ -71,3 +71,8 @@ def registerUser(request):
 
     context={'page': page, 'form': form}
     return render(request, 'users/login_register.html', context)
+
+
+def userAccount(request):
+    context = {}
+    return render(request, 'users/account.html', context)
