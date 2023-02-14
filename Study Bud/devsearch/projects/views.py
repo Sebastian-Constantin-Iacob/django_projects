@@ -5,6 +5,7 @@ from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required
 
 
+
 # Create your views here.
 
 
@@ -15,6 +16,7 @@ def proejcts(request):
     return render(request, 'projects/projects.html', context)
 
 
+
 def project(request, pk):
     projectObj = Project.objects.get(id=pk)
     return render(request, 'projects/single-project.html', {'project': projectObj})
@@ -22,12 +24,15 @@ def project(request, pk):
 
 @login_required(login_url="login")
 def createProject(request):
+    profile = request.user.profile
     form = ProjectForm()
     # form process to the data base
     if request.method == 'POST':
-        form = ProjectForm(request.POST, renderer=FILES)
+        form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            project = form.save(commit=False)
+            project.owner = profile
+            project.save()
             return redirect('projects')
     context = {'form': form}
     return render(request, 'projects/project_form.html', context)
