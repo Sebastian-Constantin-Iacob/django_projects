@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from .models import Profile, Skill
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import CustomUserCreatrionForm
+from .forms import CustomUserCreatrionForm, ProfileForm
 
 # Create your views here.
 def profiles(request):
@@ -80,3 +80,10 @@ def userAccount(request):
     projects = profile.project_set.all()
     context = {'profile': profile, 'skills': skills,'projects': projects }
     return render(request, 'users/account.html', context)
+
+
+@login_required(login_url='login')
+def editAccount(request):
+    form = ProfileForm()
+    context = {'form': form}
+    return render(request, 'users/profile_form.html', context)
