@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 
 
-def proejcts(request):
+def projects(request):
     projects = Project.objects.all()
     context = {'projects': projects}
     return render(request, 'projects/projects.html', context)
