@@ -60,4 +60,4 @@ def deleteProject(request, pk):
     if request.method == 'POST':
         project.delete()
         return redirect('projects')
-    return render(request, 'projects/delete_template.html', {'project': project})
+    return render(request, 'delete_template.html', {'project': project})

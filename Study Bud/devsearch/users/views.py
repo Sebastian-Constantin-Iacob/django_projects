@@ -128,3 +128,16 @@ def updateSkill(request, pk):
 
     context = {'form': form}
     return render(request, 'users/skill_form.html', context)
+
+
+@login_required(login_url='login')
+def deleteSkill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    content = {'object': skill}
+    if request.method == "POST":
+        skill.delete()
+        messages.success(request, 'Skill was successfully deleted!')
+        return redirect('account')
+    return render (request, 'delete_template.html', content)
+
