@@ -27,7 +27,6 @@ class Project(models.Model):
 
 class Review(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
-    #owner = 
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     body = models.TextField(null=True, blank=True)
     VOTE_TYPE = (
