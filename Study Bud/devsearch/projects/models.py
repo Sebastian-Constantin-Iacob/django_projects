@@ -22,7 +22,13 @@ class Project(models.Model):
         return self.title
     
     class Meta:
-        ordering = ['-created']
+        ordering = ['-vote_ratio', '-vote_total', 'title']
+
+
+    @property
+    def reviewers(self):
+        queryset = self.review_set.all().values_list('owner__id', flat=True)
+        return queryset
 
 
     @property
