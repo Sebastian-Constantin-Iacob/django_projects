@@ -10,7 +10,7 @@
             <form class="form" method="POST">
                 {%  csrf_token %}
 
-                {% if request.user.is_authentificated == False %}
+                {% if request.user.is_authenticated == False %}
                 <!-- Input:Text -->
                 <div class="form__field">
                     <label for="formInput#text">{{form.name.label}}: </label>
@@ -19,7 +19,7 @@
 
                 <!-- Input:Text -->
                 <div class="form__field">
-                    <label for="formInput#text">{{form.name.label}}: </label>
+                    <label for="formInput#text">{{form.email.label}}: </label>
                     {{form.email}}
                 </div>
                 {%  endif %}
