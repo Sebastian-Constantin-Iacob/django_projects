@@ -39,3 +39,7 @@ class Skill(models.Model):
 
     def __str__(self) -> str:
         return str(self.name)
+    
+
+class Message(models.Model):
+    sender = models.ForeignKey(Profile, on_delete=models.SET_NULLL, null=True, blank=True)
