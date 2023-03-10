@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from .models import Profile, Skill, Message
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import CustomUserCreatrionForm, ProfileForm, SkillForm
+from .forms import CustomUserCreatrionForm, ProfileForm, SkillForm, MessageForm
 from django.db.models import Q
 from .utils import searchProfiles, paginateProfiles
 
@@ -160,6 +160,16 @@ def inbox(request):
 def viewMessage(request, pk):
     profile = request.user.profile
     message = profile.messages.get(id=pk)
+    if message.is_read == Faalse:
+        message.is_read = True
+        message.save()
     context = {'message': message}
     return render(request, 'users/message.html', context)
+
+
+def createMessage(request, pk):
+    recipient = Profile.objects.get(id=pk)
+    form = MessageForm()
+    context={'recipient': recipient, 'form': form}
+    return render(request, 'users/message_form.html', context)
 
