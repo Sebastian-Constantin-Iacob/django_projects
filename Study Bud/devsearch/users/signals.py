@@ -20,16 +20,19 @@ def createProfile(sender, instance, created, **kwargs):
             name=user.first_name,
         )
 
-        subject = 'Welcome to DevSearch'
-        message = 'We are glad you are here!'
 
-        # send_mail(
-        #     subject,
-        #     message,
-        #     settings.EMAIL_HOST_USER,
-        #     [profile.email],
-        #     fail_silently=False,
-        # )
+        subject = 'Welcome to DefvSearch'
+        message = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [profile.email],
+            fail_silently=False,
+        )
+
+        print(profile.email)
 
 
 def updateUser(sender, instance, created, **kwargs):
